@@ -1,0 +1,15 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: appservice-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: grupo02.cps.acelera.com.br
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: appservice
+          servicePort: 80

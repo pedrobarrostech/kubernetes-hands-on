@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grupo2deployment
+  labels:
+    app: grupo2deployment
+spec:
+  replicas: 4
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 8
+  selector:
+    matchLabels:
+      app: grupo2deployment
+  template:
+    metadata:
+      labels:
+        app: grupo2deployment
+    spec:
+      containers:
+      - name: grupo2deployment
+        image: hashicorp/http-echo
+        args: ["-text", "Hello World"]
+        ports:
+        - containerPort: 5678

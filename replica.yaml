@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: appgrupo21
+  labels:
+    app: appgrupo21
+    tier: appgrupo21
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      tier: appgrupo21
+  template:
+    metadata:
+      labels:
+        tier: appgrupo21
+    spec:
+      containers:
+      - name: appgrupo21
+        image: hashicorp/http-echo
+        args: ["-text", "Grupo 2 Replica"]
+        ports:
+          - name: web
+            containerPort: 5678
+            protocol: TCP
